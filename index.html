@@ -8,12 +8,42 @@
     <title>Lista de contatos</title>
 </head>
 <body>
-    <h1>Lista de contatos</h1>
+    <div id="app">
+        <h1>Lista de contatos</h1>
 
-    <input type="text" placeholder="Nome do contato">
-    <br>
-    <input type="text" placeholder="Telefone do contato">
-    <br>
-    <button>Salvar</button>
+        <input type="text" placeholder="Nome do contato" v-model="contato.nome">
+        <br>
+        <input type="text" placeholder="Telefone do contato" v-model="contato.telefone">
+        <br>
+        <button @click="salvar">Salvar</button>
+        <br>
+
+        <ul>
+            <li v-for="contato in contatos">{{contato.nome}}</li>
+        </ul>
+        contato: {{contato.nome}}
+        <br>
+        contatos: {{contatos.length}}
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+                contato: {},
+                contatos:[],
+
+            },
+            methods:{
+                salvar() {
+                    this.contatos.push(this.contato);
+                    this.contato = {};
+                },
+            }
+        });
+    </script>
 </body>
 </html>
